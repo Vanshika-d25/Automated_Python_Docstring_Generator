@@ -1,0 +1,4 @@
+[tool.docstring_enforcer]
+style = "google"
+min_coverage = 80
+fail_on_pep257 = true

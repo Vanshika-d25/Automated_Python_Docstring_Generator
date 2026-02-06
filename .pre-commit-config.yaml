@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: docstring-enforcer
+        name: Docstring Enforcement Check
+        entry: python backend/scripts/pre_commit_check.py
+        language: system
+        files: \.py$

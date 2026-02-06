@@ -1,0 +1,27 @@
+name: Docstring CI Check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  docstring-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r backend/requirements.txt
+          pip install pydocstyle
+
+      - name: Run docstring enforcement
+        run: |
+          python backend/scripts/pre_commit_check.py
