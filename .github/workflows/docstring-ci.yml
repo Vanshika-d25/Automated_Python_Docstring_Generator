@@ -1,8 +1,10 @@
-name: Docstring CI Check
+name: Docstring Coverage Check
 
 on:
   push:
+    branches: [ main ]
   pull_request:
+    branches: [ main ]
 
 jobs:
   docstring-check:
@@ -15,13 +17,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.10'
 
       - name: Install dependencies
         run: |
-          pip install -r backend/requirements.txt
-          pip install pydocstyle
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Run docstring enforcement
+      - name: Run docstring analyzer
         run: |
-          python backend/scripts/pre_commit_check.py
+          python scripts/pre_commit_check.py
