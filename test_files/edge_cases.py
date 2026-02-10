@@ -1,2 +1,2 @@
-def demo():
-    return 10
+def demo_function():
+    return "hello"
