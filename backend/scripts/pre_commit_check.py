@@ -1,8 +1,27 @@
 import sys
+import os
 import subprocess
-import tomllib
 from pathlib import Path
 
+# -------------------------------
+# Fix Python import path
+# -------------------------------
+# Add backend/ to PYTHONPATH so "analyzer" can be imported
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
+# -------------------------------
+# TOML compatibility
+# -------------------------------
+try:
+    import tomllib  # Python 3.11+
+except ModuleNotFoundError:
+    import tomli as tomllib  # Python < 3.11
+
+# -------------------------------
+# Internal imports
+# -------------------------------
 from analyzer.ast_parser import analyze_code
 from analyzer.pep257_checker import check_pep257
 
